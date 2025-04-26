@@ -1,0 +1,12 @@
+
+        .closing{
+            background-color: red;
+            border-radius: 5px;
+        }
+        table{
+            text-align: center;
+            font-size: 25px;
+        }
+        .putting_center{
+            text-align: center;
+        }
