@@ -23,16 +23,22 @@ class StudentController extends Controller
      */
     public function addStudent(Request $request)
     {
-        request()->validate([
-            'name' => ['required'],
-            'age' => ['required'],
-            'country' => ['required'],
-            'phone' => ['required'],
-        ]);
+        if ($request->hasFile('picture')){
+            $file = $request->file('picture');
+            $filename = time(). '_' . $file->getClientOriginalName();
+            $file->move(public_path('students'), $filename);
+            // request()->validate($request->only(['name', 'age', 'country', 'phone', 'picture']));
 
-        Student::create($request->only(['name', 'age', 'country', 'phone']));
+            Student::create([
+                'name' => $request->name,
+                'age' => $request->age,
+                'country' => $request->country,
+                'phone' => $request->phone,
+                'picture' => $filename, // Save only the filename
+            ]);
 
-        return redirect('/RegisterStudentPage')->with('success', 'Student added!');
+            return redirect('/RegisterStudentPage')->with('success', 'Student added!');
+        }
 }
 
 

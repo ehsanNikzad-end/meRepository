@@ -1,6 +1,6 @@
 <x-layout>
     <div class="container-fluid mt-5" style="text-align: center;">
-        <form method="POST" action="AddStudent">
+        <form method="POST" action="AddStudent" enctype="multipart/form-data">
             @csrf
             <label>
                 Name:
@@ -17,6 +17,10 @@
             <label>
                 Phone:
                 <input type="number" name="phone" placeholder="phone">
+            </label>
+            <label>
+                Student picture:
+                <input type="file" name="picture">
             </label>
             <input type="submit" name="submit" value="Record" class="btn btn-success">
         </form>
